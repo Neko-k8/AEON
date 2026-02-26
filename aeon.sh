@@ -13,11 +13,11 @@ CDTB=out/dtb;
 CAIK=AIK/split_img;
 NIMG='AIK/image-new.img';
 NAME='AEON-Q'; #FOR ZIP_NAME
-KNAME=" AEON Q v'$n' By DAvinash97"
+KNAME=" Haruka_Kernel Q v'$n' By @HarukaNV"
 JOBS=$(($(nproc)+1))
 echo -e "\nSetting Up Environment\n"
 
-export CROSS_COMPILE=../../toolchain/bin/aarch64-none-linux-gnu-
+export CROSS_COMPILE=/run/media/haruka/DATA/Kernel_Android/prebuilts_gcc_linux-x86_aarch64_aarch64-linaro-7/bin/aarch64-linux-gnu-
 export CC=../../clang/bin/clang
 export CLANG_TRIPLE=../../clang/bin/aarch64-linux-gnu-
 export ARCH=arm64
@@ -280,10 +280,8 @@ do
         Clean)
             echo -e "\nChosen $DEVICE\n"
             echo -e "\nCleaning Up Previous Build"
-            make O=out clean && make O=out mrproper
-            if [ -f AEON*.zip ]; then
-                rm AEON*.zip
-            fi
+
+            
         ;;
         exit)
             break
