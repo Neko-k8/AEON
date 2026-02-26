@@ -17,7 +17,7 @@ KNAME=" Haruka_Kernel Q v'$n' By @HarukaNV"
 JOBS=$(($(nproc)+1))
 echo -e "\nSetting Up Environment\n"
 
-export CROSS_COMPILE=/run/media/haruka/DATA/Kernel_Android/prebuilts_gcc_linux-x86_aarch64_aarch64-linaro-7/bin/aarch64-linux-gnu-
+export CROSS_COMPILE=/run/media/haruka/DATA/Kernel_Android/toolchain/aarch64--glibc--stable-2025.08-1/bin/aarch64-buildroot-linux-
 export CC=../../clang/bin/clang
 export CLANG_TRIPLE=../../clang/bin/aarch64-linux-gnu-
 export ARCH=arm64
