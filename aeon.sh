@@ -15,10 +15,12 @@ NIMG='AIK/image-new.img';
 NAME='AEON-Q'; #FOR ZIP_NAME
 KNAME=" Haruka_Kernel Q v'$n' By @HarukaNV"
 JOBS=$(($(nproc)+1))
+
 echo -e "\nSetting Up Environment\n"
 
+export CLANG_BIN=/run/media/haruka/DATA/Kernel_Android/AEON/toolchain/r547379/bin
 export CROSS_COMPILE=/run/media/haruka/DATA/Kernel_Android/gcc-12.5.0-aarch64/bin/aarch64-linux-android-
-export CC=../../clang/bin/clang
+export CC=clang
 export CLANG_TRIPLE=../../clang/bin/aarch64-linux-gnu-
 export ARCH=arm64
 export ANDROID_MAJOR_VERSION=q
