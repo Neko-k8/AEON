@@ -74,8 +74,9 @@ int big_key_preparse(struct key_preparsed_payload *prep)
 			goto error;
 		}
 
-		written = kernel_write(file, prep->data, prep->datalen, 0);
-		if (written != datalen) {
+		loff_t pos = 0;
+		written = kernel_write(file, data, enclen, &pos);
+		if (written != enclen) {
 			ret = written;
 			if (written >= 0)
 				ret = -ENOMEM;
@@ -90,11 +91,11 @@ int big_key_preparse(struct key_preparsed_payload *prep)
 		fput(file);
 	} else {
 		/* Just store the data in a buffer */
-		void *data = kmalloc(datalen, GFP_KERNEL);
+		void *data = kmalloc(enclen, GFP_KERNEL);
 		if (!data)
 			return -ENOMEM;
 
-		prep->payload[0] = memcpy(data, prep->data, prep->datalen);
+		prep->payload[0] = memcpy(data, prep->data, prep->enclen);
 	}
 	return 0;
 
@@ -183,14 +184,14 @@ long big_key_read(const struct key *key, char __user *buffer, size_t buflen)
 		if (IS_ERR(file))
 			return PTR_ERR(file);
 
-		pos = 0;
-		ret = vfs_read(file, buffer, datalen, &pos);
+		loff_t pos = 0;
+		ret = kernel_read(file, buffer, enclen, &pos);
 		fput(file);
-		if (ret >= 0 && ret != datalen)
+		if (ret >= 0 && ret != enclen)
 			ret = -EIO;
 	} else {
-		ret = datalen;
-		if (copy_to_user(buffer, key->payload.data, datalen) != 0)
+		ret = enclen;
+		if (copy_to_user(buffer, key->payload.data, enclen) != 0)
 			ret = -EFAULT;
 	}
 
