@@ -7,3 +7,5 @@ AnyKernel3/Image
 AnyKernel3/dtb
 *.zip
 *.img
+*.sh
+*.patch
