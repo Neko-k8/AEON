@@ -18,8 +18,8 @@ JOBS=$(($(nproc)+1))
 
 echo -e "\nSetting Up Environment\n"
 
-export CLANG_BIN=/run/media/haruka/DATA/Kernel_Android/AEON/toolchain/r547379/bin
-export CROSS_COMPILE=/run/media/haruka/DATA/Kernel_Android/gcc-12.5.0-aarch64/bin/aarch64-linux-android-
+export CLANG_BIN=/run/media/hakyura/261dea50-a8a4-4d2a-8b3e-540a49827e31/toolchain/linux-x86-refs_tags_android-9.0.0_r3-clang-4691093/bin
+export CROSS_COMPILE=/run/media/hakyura/261dea50-a8a4-4d2a-8b3e-540a49827e31/toolchain/aarch64--glibc--stable-2025.08-1/bin/aarch64-buildroot-linux-gnu-
 export CC=clang
 export CLANG_TRIPLE=../../clang/bin/aarch64-linux-gnu-
 export ARCH=arm64
